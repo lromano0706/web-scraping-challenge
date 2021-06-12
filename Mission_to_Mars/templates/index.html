@@ -14,33 +14,43 @@
   <div class="container-fluid">
 
     <div class="jumbotron text-center">
-      <h1>Mission to Mars</h1>
+      <h1><strong>Mission to Mars</strong></h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p><!-- Render our data -->
     </div>
   </div>
     
   <div class="row">
-    <div class="col-md-12"><h2>Latest Mars News</h2></div>
-    <div class="col-md-12"><p>Mars Tile info goes here</p></div>
-    <div class="col-md-12">Mars Paragraph info goes here</div>
+    <div class="col-md-12"><h2><strong>Latest Mars News</strong></h2></div>
+    <div class="col-md-12"><h3><p>{{ mars_data.news_title}}</p></h3></div>
+    <div class="col-md-12"><p>{{ mars_data.news_paragraph}}</p></div>
   </div>
 
   <div class="row">
-    <div class="col-md-8"><h2>Featured Mars Image</h2></div>
-    <div class="col-md-4">Table Goes Here</div>
+    <div class="col-md-8"><h2><strong>Featured Mars Image</strong></h2><img src= {{ mars_data.featured_image_URL}} class="img-responsive" alt="Responsive image"></div>
+    <div class="col-md-4">
+      <div class="table">
+        <h3><strong>Mars Facts</strong></h3>
+        <p>{{ mars_data.html_table | safe }}</p>
+      </div>
+    </div>
   </div>
 
   <div class="row">
-    <div class="col-md-12"><h2 class="text-center">Mars Hemisphers</h2><hr></div>
+    <div class="col-md-12"><h2 class="text-center"><strong>Mars Hemisphers</strong></h2><hr></div>
+    <div class="card">
+      {% for image in mars_data.hemisphere_image_urls %}
+      <div class="col-md-3">
+        <img class="thumbnail" src="{{ image.img_url }}" width="100%" alt=" {{ image.title }}">
+        <div class="card-body">
+          <h4 class="card-title"> {{ image.title }}</h4>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
   </div>
     
-  <div class="row">
-    <div class="col-md-3">.col-md-3</div>
-    <div class="col-md-3">.col-md-3</div>
-    <div class="col-md-3">.col-md-3</div>
-    <div class="col-md-3">.col-md-3</div>
 
-  </div>
 
 
 </body>
