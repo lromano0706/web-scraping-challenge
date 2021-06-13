@@ -47,6 +47,9 @@ def scrape():
     tables_url = 'https://galaxyfacts-mars.com/'
     tables = pd.read_html(tables_url)
     html_tables = tables[0]
+    # reset columns and index for cleaner table
+    html_tables.columns = ["","Mars","Earth"]
+    html_tables.set_index("", inplace=True)
 
     #Use Pandas to convert the data to a HTML table string
     mars_facts = html_tables.to_html()
